@@ -117,3 +117,33 @@ To moderate contributions from regualar employees they use GitHubs UI for issues
 - Provides search for markdown.
 - Manage presentations in local DB or possibly on GitHub.
 
+
+## The presentation data structure
+```mermaid
+classDiagram
+    Presentation <|-- Theme
+    Presentation <|-- CustomSlide
+    Presentation <|-- ContentAtomSlide
+    Presentation : name
+    Presentation : template
+    Presentation : slides[]
+    class Theme{
+      name
+      template
+    }
+    class CustomSlide{
+      content
+    }
+    class ContentAtomSlide{
+      link
+    }
+```
+
+### Theme
+This is either the name of a predefined theme in
+[reveal.js](https://revealjs.com/) or a custom theme.
+
+### Slides
+This is the content of the presentation.
+Slides can be created either specific for this presentation or be a reference
+to a moderated slide from existing course material.

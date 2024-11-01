@@ -1,6 +1,8 @@
 # Course Material System
 
 ## Use Case: Public End Users
+In this use case users are unauthenticated and could be for example course
+participants or previous employees.
 
 ```mermaid
 C4Context
@@ -27,15 +29,28 @@ C4Context
 
         System_Boundary(bGithub, "GitHub") {
             System_Ext(SystemGithubRAW, "GitHub Raw", "Direct links to raw markdown, theme or other resource.")
-            System_Ext(SystemGithubAPI, "GitHub API", "Handle issues for contributions, list repo content, etc.")
+            System_Ext(SystemGithubAPI, "GitHub API", "If we need it to get links to raw resources")
         }
     }
 
     UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="2")
 ```
 
+### Public API
+This API does not require authenticatio. It acts like a proxy and possibly a
+cache for resources that would otherwise require authentication. Is is used to
+give public access to markdown, themes and resources used in presentations.
+
+Markdown and other resources is fetched from GitHub using raw files from the
+main GitHub site or using the GitHub API and
+[octokit.js](https://github.com/octokit/octokit.js).
+
+Access to resources using raw files could possibly just redirect to GitHub,
+as access to to each raw files is using a unique token per file.
+
 
 ## Use Case: Employees
+In this use case users are authenticated and could be for example employees.
 
 ```mermaid
 C4Context
@@ -86,3 +101,19 @@ C4Context
 
     UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
+
+### Employee
+Regular employees use the [Public API](#public-api) and an internal UI that
+require authentication.
+
+### Employee Moderator
+Employees that moderate course material use the Public API and the internal UI.
+To moderate contributions from regualar employees they use GitHubs UI for issues.
+
+### Backend Service
+- Handles access to the GitHub API.
+- Indexing and preview of markdown and themes.
+- Create issues thru the GitHub API for contributions to markdown and themes.
+- Provides search for markdown.
+- Manage presentations in local DB or possibly on GitHub.
+

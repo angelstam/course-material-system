@@ -1,4 +1,21 @@
 # Course Material System
+A system for handling course material as markdown in GitHub repos.
+
+## Course Material
+Course material should be split into small reuseable parts, topics. Each topic
+is categorized and stored in GitHub repos together with other related topics.
+
+```
+repo/<subject>/<subarea>/<topic>.md
+```
+
+- A subject could be a programming language or a framework.
+
+- A subarea could be a concept in a language or some part of a framework.
+
+- A topic could be a specific keyword or construct in a language of a specific
+  API in a framework.
+
 
 ## Use Case: Public End Users
 In this use case users are unauthenticated and could be for example course

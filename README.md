@@ -160,9 +160,9 @@ To moderate contributions from regualar employees they use GitHubs UI for issues
 ## The presentation data structure
 ```mermaid
 classDiagram
-    Presentation <|-- Theme
-    Presentation <|-- CustomSlide
-    Presentation <|-- ContentAtomSlide
+    Presentation *-- Theme
+    Presentation *-- CustomSlide
+    Presentation *-- ContentAtomSlide
     Presentation : name
     Presentation : template
     Presentation : slides[]

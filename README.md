@@ -16,6 +16,28 @@ repo/<subject>/<subarea>/<topic>.md
 - A topic could be a specific keyword or construct in a language of a specific
   API in a framework.
 
+```mermaid
+classDiagram
+    Topic "*" *-- "1" Subarea
+    Subarea "*" *-- "1" Subject
+    class Topic{
+        path
+        sha/tag
+        repo
+        preview
+        description
+    }
+    class Subarea{
+        name
+        path
+        repo
+        index
+    }
+    class Subject{
+        name
+        index
+    }
+```
 
 ## Use Case: Public End Users
 In this use case users are unauthenticated and could be for example course

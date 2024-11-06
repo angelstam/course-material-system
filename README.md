@@ -186,3 +186,26 @@ This is either the name of a predefined theme in
 This is the content of the presentation.
 Slides can be created either specific for this presentation or be a reference
 to a moderated slide from existing course material.
+
+
+## Editor for Markdown
+### REMEDI - REveal.js Markdown EDItor
+[fbedussi/reveal-js-editor on GitHub](https://github.com/fbedussi/reveal-js-editor)
+
+REMEDI is a cross platform editor (build upon the electron framework) to author reveal.js presentation in markdown.
+
+It seems to be partially functional and was last updated in December 2020.
+
+### Reveal-md
+[patarapolw/reveal-md on GitHub](https://github.com/patarapolw/reveal-md)
+
+Reveal.js x Markdown (Showdown.js) editor, CLI and viewer.
+
+Last updated in December 2019.
+
+### Showdown
+[showdownjs/showdown on GitHub](https://github.com/showdownjs/showdown)
+
+Showdown is a JavaScript Markdown to HTML converter. Showdown can be used client side (in the browser) or server side (with Node.js).
+
+A general Markdown to HTML contverter that could be used for a live preview. Last Updated in November 2022.

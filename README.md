@@ -209,3 +209,28 @@ Last updated in December 2019.
 Showdown is a JavaScript Markdown to HTML converter. Showdown can be used client side (in the browser) or server side (with Node.js).
 
 A general Markdown to HTML contverter that could be used for a live preview. Last Updated in November 2022.
+
+
+## Github API with octokit.js
+Octokit.js is the recommended way to use the Github API.
+
+Instructions from [octokit.js on Github](https://github.com/octokit/octokit.js)
+
+[Best practices for using the REST API](https://docs.github.com/en/rest/using-the-rest-api/best-practices-for-using-the-rest-api)
+
+### Install octokit
+Install with <code>npm/pnpm install octokit</code>, or <code>yarn add octokit</code>
+
+```js
+import { Octokit, App } from "octokit";
+```
+
+### Throttling and Limitations
+Read and handle [rate limits for the REST API](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api).
+
+> You can use a personal access token to make API requests. Additionally, you can authorize a GitHub App or OAuth app, which can then make API requests on your behalf.
+>
+> All of these requests count towards your personal rate limit of 5,000 requests per hour. Requests made on your behalf by a GitHub App that is owned by a GitHub Enterprise Cloud organization have a higher rate limit of 15,000 requests per hour. Similarly, requests made on your behalf by a OAuth app that is owned or approved by a GitHub Enterprise Cloud organization have a higher rate limit of 15,000 requests per hour if you are a member of the GitHub Enterprise Cloud organization.
+
+### Caching
+As SHA:s for resources in a Git repo will never change, caching of course material fetched using the Github API can be permanent and never expire. Therefore throttling and limitations of the number of requests to the Github API should not be a big issue.

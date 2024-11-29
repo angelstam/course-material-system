@@ -225,6 +225,20 @@ Install with <code>npm/pnpm install octokit</code>, or <code>yarn add octokit</c
 import { Octokit, App } from "octokit";
 ```
 
+Create a token with appropiate permissions [Settings / Developer Settings](https://github.com/settings/tokens), [read more about personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+
+Test the token with this example: Get the username for the authenticated user.
+```js
+// Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
+const octokit = new Octokit({ auth: `personal-access-token123` });
+
+// Compare: https://docs.github.com/en/rest/reference/users#get-the-authenticated-user
+const {
+  data: { login },
+} = await octokit.rest.users.getAuthenticated();
+console.log("Hello, %s", login);
+```
+
 ### Throttling and Limitations
 Read and handle [rate limits for the REST API](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api).
 
@@ -233,4 +247,59 @@ Read and handle [rate limits for the REST API](https://docs.github.com/en/rest/u
 > All of these requests count towards your personal rate limit of 5,000 requests per hour. Requests made on your behalf by a GitHub App that is owned by a GitHub Enterprise Cloud organization have a higher rate limit of 15,000 requests per hour. Similarly, requests made on your behalf by a OAuth app that is owned or approved by a GitHub Enterprise Cloud organization have a higher rate limit of 15,000 requests per hour if you are a member of the GitHub Enterprise Cloud organization.
 
 ### Caching
-As SHA:s for resources in a Git repo will never change, caching of course material fetched using the Github API can be permanent and never expire. Therefore throttling and limitations of the number of requests to the Github API should not be a big issue.
+As SHA:s for resources in a Git repo will never change, caching of course material fetched using the Github API can be permanent and never expire, as long as urls contain a specific SHA. Therefore throttling and limitations of the number of requests to the Github API should not be a big issue.
+
+### Some Relevant Endpoits
+#### Get the content of a file/directory
+- [REST API endpoints for repository contents](https://docs.github.com/en/rest/repos/contents)
+
+Example: Get a list of all files in the root directory of the repository on the master branch.
+```js
+const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
+
+try
+{
+  const data = await octokit.rest.repos.getContent({
+    owner: "angelstam",
+    repo: "course-material-system",
+    path:"",
+    ref: "master",
+    });
+  console.log(data);
+} catch (e) {
+  console.error(e);
+}
+```
+
+The content of a specific file is retrieved using the `download_url` parameter with the following format.
+```
+https://raw.githubusercontent.com/:owner/:repo/:ref/:path
+```
+
+#### Issues and comments
+Github issues could be used when working with moderation of content.
+- [REST API endpoints for issues](https://docs.github.com/en/rest/issues/issues)
+- [REST API endpoints for issue comments](https://docs.github.com/en/rest/issues/comments)
+
+Example: Get a list of all issues.
+```js
+const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
+
+try
+{
+  const data = await octokit.rest.issues.list({
+    owner: "angelstam",
+    repo: "course-material-system",
+  });
+  console.log(data);
+} catch (e) {
+  console.error(e);
+}
+```
+
+
+## Future expansion
+- Support for more content types like images and other generic files.
+- Support for multiple Github repos.
+- Support for other file storage services.
+- Login using single sign-on using Azure or other external login.

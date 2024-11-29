@@ -76,7 +76,7 @@ C4Context
 ```
 
 ### Public API
-This API does not require authenticatio. It acts like a proxy and possibly a
+This API does not require authentication. It acts like a proxy and possibly a
 cache for resources that would otherwise require authentication. Is is used to
 give public access to markdown, themes and resources used in presentations.
 
@@ -102,8 +102,8 @@ C4Context
         UpdateRelStyle(SystemGithubRAW, SystemAPI, $offsetY="130", $offsetX="-140")
 
         Enterprise_Boundary(b1, "Employees") {
-            Person(employeeA, "Employee", "Employee using the couse material.")
-            Person(employeeB, "Employee Moderator", "Employee moderating the couse material.")
+            Person(employeeA, "Employee", "Employee using the course material.")
+            Person(employeeB, "Employee Moderator", "Employee moderating the course material.")
 
             System(SystemUI, "UI", "Enable employees to Search, Preview and Contribute Markdown.")
 
@@ -147,7 +147,7 @@ require authentication.
 
 ### Employee Moderator
 Employees that moderate course material use the Public API and the internal UI.
-To moderate contributions from regualar employees they use GitHubs UI for issues.
+To moderate contributions from regular employees they use GitHubs UI for issues.
 
 ### Backend Service
 - Handles access to the GitHub API.
@@ -208,7 +208,7 @@ Last updated in December 2019.
 
 Showdown is a JavaScript Markdown to HTML converter. Showdown can be used client side (in the browser) or server side (with Node.js).
 
-A general Markdown to HTML contverter that could be used for a live preview. Last Updated in November 2022.
+A general Markdown to HTML converter that could be used for a live preview. Last Updated in November 2022.
 
 
 ## Github API with octokit.js
@@ -225,7 +225,7 @@ Install with <code>npm/pnpm install octokit</code>, or <code>yarn add octokit</c
 import { Octokit, App } from "octokit";
 ```
 
-Create a token with appropiate permissions [Settings / Developer Settings](https://github.com/settings/tokens), [read more about personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+Create a token with appropriate permissions [Settings / Developer Settings](https://github.com/settings/tokens), [read more about personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
 Test the token with this example: Get the username for the authenticated user.
 ```js
@@ -249,7 +249,7 @@ Read and handle [rate limits for the REST API](https://docs.github.com/en/rest/u
 ### Caching
 As SHA:s for resources in a Git repo will never change, caching of course material fetched using the Github API can be permanent and never expire, as long as urls contain a specific SHA. Therefore throttling and limitations of the number of requests to the Github API should not be a big issue.
 
-### Some Relevant Endpoits
+### Some Relevant Endpoints
 #### Get the content of a file/directory
 - [REST API endpoints for repository contents](https://docs.github.com/en/rest/repos/contents)
 
@@ -343,4 +343,4 @@ try
 - Support for more content types like images and other generic files.
 - Support for multiple Github repos.
 - Support for other file storage services.
-- Login using single sign-on using Azure or other external login.
+- Login with single sign-on using Azure or other external login.

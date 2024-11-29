@@ -264,7 +264,7 @@ try
     repo: "course-material-system",
     path:"",
     ref: "master",
-    });
+  });
   console.log(data);
 } catch (e) {
   console.error(e);
@@ -272,6 +272,47 @@ try
 ```
 
 The content of a specific file is retrieved using the `download_url` parameter with the following format.
+```
+https://raw.githubusercontent.com/:owner/:repo/:ref/:path?token=<optional token for access to files in private repos>"
+```
+
+To enable efficient caching of content, files shall always be accessed using a specific commit SHA. The valid commit SHA:s for a specific file can be obtained using the following example.
+
+Example: Get all commits/versions of a specific file.
+```js
+try
+{
+  const data = await octokit.rest.repos.listCommits({
+    owner: "angelstam",
+    repo: "course-material-system",
+    path:"README.md",
+    ref: "master",
+  });
+  console.log(data);
+} catch (e) {
+  console.error(e);
+}
+```
+
+For private repos the `download_url` can be retrieved using the following example.
+
+Example: Get details and `download_url` for a specific file.
+```js
+try
+{
+  const data = await octokit.rest.repos.getContent({
+    owner: "angelstam",
+    repo: "course-material-system",
+    path:"README.md",
+    ref: "98948c9c8b45c78c65b632481d0e153bbbf5ccf0",
+  });
+  console.log(data);
+} catch (e) {
+  console.error(e);
+}
+```
+
+For public repos the specific revision of a file can be fetched directly using the following format.
 ```
 https://raw.githubusercontent.com/:owner/:repo/:ref/:path
 ```
